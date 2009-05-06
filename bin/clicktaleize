@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+# check arguments
+root = ARGV.shift
+unless ARGV.empty? && root && File.directory?(root)
+  abort "Usage: clicktaleize PATH_TO_YOUR_RAILS_APP"
+end
+
+# create plugin dir and init.rb
+clicktale_dir = File.join(root, "vendor/plugins/clicktale")
+FileUtils.mkdir_p(clicktale_dir)
+File.open(File.join(clicktale_dir, "init.rb"), "w") do |file|
+  file.write <<-INIT
+require 'astrails/clicktale'
+Astrails::Clicktale.init
+INIT
+  end
+
+# copy clicktale .js
+js_src = File.join(File.dirname(__FILE__), "../WRb.js")
+js_dst = File.join(root, "public/javascripts/WRb.js")
+unless File.exists?(js_dst)
+  FileUtils.cp js_src, js_dst
+end
+
+# create config file if needed
+conf_src = File.join(File.dirname(__FILE__), "../config/clicktale.yml")
+conf_dst = File.join(root, "config/clicktale.yml")
+if File.exists?(conf_dst)
+  STDERR.puts <<-END
+Config file #{conf_dst} already exists.
+END
+else
+  FileUtils.cp conf_src, conf_dst
+  puts File.read(File.join(File.dirname(__FILE__), '../README.rdoc'))
+  puts <<-END
+
+-------------------------------------------------------------
+Installed clicktale configuration file at #{conf_dst}.
+You need to provide project_id for this plugin to work.
+You can get clicktale project_id from your clicktale account.
+-------------------------------------------------------------
+END
+end  
+

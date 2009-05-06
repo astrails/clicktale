@@ -1,0 +1,15 @@
+default: &default
+  project_id: CLICKTALE_PROJECT_ID
+  ratio: 1
+  
+production:
+  <<: *default
+  enabled: true
+
+development:
+  <<: *default
+  enabled: false
+  
+test:
+  <<: *default
+  enabled: false

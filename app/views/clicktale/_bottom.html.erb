@@ -1,0 +1,15 @@
+<div id="ClickTaleDiv" style="display: none;" />
+
+<%= javascript_include_tag "WRb.js" %>
+<script type="text/javascript">
+  if(typeof ClickTale == 'function') { 
+    <%- if request.ssl? -%>
+    var ClickTaleSSL = 1;
+    <%- end -%>
+    <%- if tag -%>
+    ClickTaleTag('<%= tag %>');
+    <%- end -%>
+    var ClickTaleFetchFrom = '<%= path %>';
+    ClickTale(<%= project_id %>, <%= ratio %>); 
+  }
+</script>
