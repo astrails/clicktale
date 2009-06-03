@@ -1,6 +1,7 @@
 default: &default
   project_id: CLICKTALE_PROJECT_ID
   ratio: 1
+  param: CLICKTALE_PARAM
   
 production:
   <<: *default

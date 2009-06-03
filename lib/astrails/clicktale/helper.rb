@@ -13,7 +13,8 @@ module Astrails
           :project_id => clicktale_config[:project_id],
           :path => clicktale_url,
           :ratio => clicktale_config[:ratio] || 1,
-          :tag => clicktale_config[:tag]
+          :tag => clicktale_config[:tag],
+          :param => clicktale_config[:param]
         }
       end
     end

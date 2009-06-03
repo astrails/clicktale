@@ -1,6 +1,6 @@
 <div id="ClickTaleDiv" style="display: none;" />
 
-<%= javascript_include_tag "WRb.js" %>
+<script src="<%= request.protocol %>s.clicktale.net/WRb.js" type="text/javascript"></script>
 <script type="text/javascript">
   if(typeof ClickTale == 'function') { 
     <%- if request.ssl? -%>
@@ -10,6 +10,10 @@
     ClickTaleTag('<%= tag %>');
     <%- end -%>
     var ClickTaleFetchFrom = '<%= path %>';
+    <%- if param -%>
+    ClickTale(<%= project_id %>, <%= ratio %>, "<%= param %>");
+    <%- else -%>
     ClickTale(<%= project_id %>, <%= ratio %>); 
+    <% end -%>
   }
 </script>
