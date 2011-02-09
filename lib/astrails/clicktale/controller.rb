@@ -25,7 +25,7 @@ module Astrails
       end
 
       def clicktaleize
-        returning(yield) do
+        yield.tap do
           cache_page(nil, "/clicktale/#{clicktale_cache_token}") if clicktale_enabled?
         end
       end

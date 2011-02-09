@@ -1,4 +1,4 @@
-require 'activesupport'
+require 'active_support'
 require 'astrails/clicktale/controller'
 require 'astrails/clicktale/helper'
 
