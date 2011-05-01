@@ -18,13 +18,6 @@ Astrails::Clicktale.init
 INIT
   end
 
-# copy clicktale .js
-js_src = File.join(File.dirname(__FILE__), "../WRb.js")
-js_dst = File.join(root, "public/javascripts/WRb.js")
-unless File.exists?(js_dst)
-  FileUtils.cp js_src, js_dst
-end
-
 # create config file if needed
 conf_src = File.join(File.dirname(__FILE__), "../config/clicktale.yml")
 conf_dst = File.join(root, "config/clicktale.yml")
