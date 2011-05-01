@@ -1,4 +1,4 @@
-require 'activesupport'
+require 'active_support'
 require 'astrails/clicktale/controller'
 require 'astrails/clicktale/helper'
 
@@ -13,9 +13,9 @@ module Astrails
 
     CONFIG = HashWithIndifferentAccess.new
     begin
-      conffile = File.join(RAILS_ROOT, "config", "clicktale.yml")
+      conffile = File.join(Rails.root, "config", "clicktale.yml")
       conf = YAML.load(File.read(conffile))
-      CONFIG.merge!(conf[RAILS_ENV])
+      CONFIG.merge!(conf[Rails.env])
     rescue
       puts "*" * 50
       puts "#{conffile} can not be loaded:"

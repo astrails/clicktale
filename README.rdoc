@@ -9,7 +9,7 @@ Clicktale records user sessions, clicks, form input etc and plays them back late
 
 * install the plugin
 
-> ./script/plugin install git://github.com/astrails/clicktale.git
+    rails plugin install git://github.com/astrails/clicktale.git
 
 * head to http://clicktale.net and signup for a free account. Or not free. Your choice.
 
