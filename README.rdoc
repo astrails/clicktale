@@ -2,7 +2,7 @@
 
 == Summary
 
-This gem allows easys integration with Clicktale service (http://clicktale.com)
+This plugin allows easy integration with Clicktale service (http://clicktale.com)
 Clicktale records user sessions, clicks, form input etc and plays them back later for usability review.
 
 == Installation
