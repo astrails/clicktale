@@ -1,7 +1,29 @@
 default: &default
-  project_id: CLICKTALE_PROJECT_ID
-  ratio: 1
-  param: CLICKTALE_PARAM
+  top: '<!-- ClickTale Top part -->
+    <script type="text/javascript">
+    var WRInitTime=(new Date()).getTime();
+    </script>
+    <!-- ClickTale end of Top part -->'
+  bottom: '<!-- ClickTale Bottom part -->
+    <div id="ClickTaleDiv" style="display: none;"></div>
+    <script type="text/javascript">
+    document.write(unescape("%3Cscript%20src=''"+
+     (document.location.protocol=="https:"?
+      "https://clicktale.pantherssl.com/":
+      "http://s.clicktale.net/")+
+     "WRc5.js''%20type=''text/javascript''%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var ClickTaleSSL=1;
+    if(typeof ClickTale=="function") ClickTale(889,1,"www02");
+    </script>
+    <!-- ClickTale end of Bottom part -->'
+  #do_not_replace: !ruby/regexp "/Not to record when this text is present on the page/i"
+  #insert_before: !ruby/regexp "/div.*content/"
+  #insert_after: !ruby/regexp "/h1/"
+  #allowed_addresses: "75.125.82.64/26,50.97.162.64/26"
+  do_not_process_cookie_name: "WRUID"
+  do_not_process_cookie_value: 0
   
 production:
   <<: *default
