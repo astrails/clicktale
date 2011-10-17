@@ -27,7 +27,9 @@ module Astrails
       def clicktaleize
         res = yield
         if clicktale_enabled?
-          response.body.sub!(/(\<body\>)/, "\\1\n#{clicktale_config[:top]}").sub!(/(\<\/body\>)/, "#{clicktale_bottom}\n\\1")
+          top_regexp = clicktale_config[:insert_after] || /(\<body\>)/
+          bottom_regexp = clicktale_config[:insert_before] || /(\<\/body\>)/
+          response.body.sub!(top_regexp) { |match| match + "\n" + clicktale_config[:top] }.sub!(bottom_regexp) { |match| clicktale_bottom + "\n" + match }
           cache_page(nil, "/clicktale/#{clicktale_cache_token}")
         end
         res

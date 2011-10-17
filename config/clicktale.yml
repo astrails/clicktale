@@ -18,9 +18,9 @@ default: &default
     if(typeof ClickTale=="function") ClickTale(889,1,"www02");
     </script>
     <!-- ClickTale end of Bottom part -->'
-  #do_not_replace: !ruby/regexp "/Not to record when this text is present on the page/i"
-  #insert_before: !ruby/regexp "/div.*content/"
-  #insert_after: !ruby/regexp "/h1/"
+  #do_not_replace: !ruby/regexp /Not to record when this text is present on the page/i
+  #insert_after: !ruby/regexp /The top part of the script goes after this regexp, by default after opening <body> tag/
+  #insert_before: !ruby/regexp /The bottom part of the script goes before this regexp, by default before closing </body> tag/
   #allowed_addresses: "75.125.82.64/26,50.97.162.64/26"
   do_not_process_cookie_name: "WRUID"
   do_not_process_cookie_value: 0
