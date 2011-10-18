@@ -15,7 +15,7 @@ default: &default
     </script>
     <script type="text/javascript">
     var ClickTaleSSL=1;
-    if(typeof ClickTale=="function") ClickTale(889,1,"www02");
+    if(typeof ClickTale=="function") ClickTale(<project_id>, <ratio>, <param>);
     </script>
     <!-- ClickTale end of Bottom part -->'
   #do_not_replace: !ruby/regexp /Not to record when this text is present on the page/i
