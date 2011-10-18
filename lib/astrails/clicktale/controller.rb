@@ -26,11 +26,17 @@ module Astrails
 
       def clicktaleize
         res = yield
-        if clicktale_enabled?
+        if clicktale_enabled? && response.body.present?
           top_regexp = clicktale_config[:insert_after] || /(\<body\>)/
           bottom_regexp = clicktale_config[:insert_before] || /(\<\/body\>)/
-          response.body.sub!(top_regexp) { |match| match + "\n" + clicktale_config[:top] }.sub!(bottom_regexp) { |match| clicktale_bottom + "\n" + match }
-          cache_page(nil, "/clicktale/#{clicktale_cache_token}")
+          response.body.sub!(top_regexp) { |match| match + "\n" + clicktale_config[:top] }
+          response.body.sub!(bottom_regexp) { |match| clicktale_bottom + "\n" + match }
+
+          if clicktale_config[:allowed_addresses].blank?
+            cache_page(nil, "/clicktale/#{clicktale_cache_token}")
+          else
+            cache_page(nil, "/../tmp/clicktale/#{clicktale_cache_token}")
+          end
         end
         res
       end
@@ -39,6 +45,7 @@ module Astrails
         @clicktale_enabled ||= clicktale_config[:enabled] &&
           request.format.try(:html?) &&
           request.get? &&
+          !(request.path =~ /clicktale.*\.html$/) &&
           cookie_enabled? &&
           regexp_enabled?
       end
