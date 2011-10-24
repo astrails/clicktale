@@ -57,7 +57,7 @@ module Astrails
       protected
 
       def clicktale_bottom
-        clicktale_config[:bottom].gsub!(/(if.*typeof.*ClickTale.*function)/, "\nvar ClickTaleFetchFrom='#{clicktale_url}';\n\\1")
+        clicktale_config[:bottom].gsub(/(if.*typeof.*ClickTale.*function)/, "\nvar ClickTaleFetchFrom='#{clicktale_url}';\n\\1")
       end
 
       def regexp_enabled?
